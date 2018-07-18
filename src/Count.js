@@ -6,7 +6,7 @@ import App from './App';
 export default class Count extends Component{
     constructor(props){
         super(props);
-        this.state = {num:0};
+        this.state = {num:0,value:''};
     }
 
         add=()=> {
@@ -19,9 +19,11 @@ export default class Count extends Component{
            this.setState({num});
       };
 
+
+
       render(){
         return(
-        <div>
+        <div>            
             <button onClick={this.min}>-</button>
            <button>{this.state.num}</button>
            <button onClick={this.add}>+</button>
