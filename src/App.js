@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Count from'./Count.js'
 import CounterList from './CounterList'
 
 class App extends Component {

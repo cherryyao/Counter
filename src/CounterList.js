@@ -1,27 +1,51 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Component } from 'react';
-import App from './App';
 import Count from'./Count.js'
 
 export default class CounterList extends Component{
     constructor(props){
         super(props);
         this.state={
-            item:[],
-            counterNum:''
+            items:[],
+            counterNum:'',
+            sum:0
         };
     }
+    reviceSum=(item)=>{
+        this.setState({sum:this.state.sum+item});
+    }
+    generateUUID = () => {
+        /*jshint bitwise:false */
+        var i,
+          random;
+        var uuid = '';
+    
+        for (i = 0; i < 32; i++) {
+          random = Math.random() * 16 | 0;
+          if (i === 8 || i === 12 || i === 16 || i === 20) {
+            uuid += '-';
+          }
+          uuid += (i === 12
+            ? 4
+            : (i === 16
+              ? (random & 3 | 8)
+              : random)).toString(16);
+        }
+        return uuid;
+      }
 
     handleChange=(event)=>{
         // console.log(this.state.counterNum);
         // this.setState({item:[]});
         // console.log(this.state.item);
-        let item=[]
-        for(var i=0;i<event.target.value;i++){
-             item.push(<Count />);
+        let tempItem=[];
+        for(let i=0;i<event.target.value;i++){
+            tempItem.push(<Count key={this.generateUUID()} reviceSum={this.reviceSum}/>);
         }
-        this.setState({item});
+        console.log(tempItem);
+        this.setState({items:tempItem});
+        this.setState({sum:0});
+        this.setState({counterNum:event.target.value});
     };
     
 
@@ -35,8 +59,9 @@ export default class CounterList extends Component{
                 />
                </div>
                <div>
-               {this.state.item}
+               {this.state.items}
                </div>
+               <div>Sum={this.state.sum}</div>
             
             </div>
         );

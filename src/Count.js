@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Component } from 'react';
-import App from './App';
 
 export default class Count extends Component{
     constructor(props){
@@ -12,11 +10,13 @@ export default class Count extends Component{
         add=()=> {
            let num =  this.state.num+1;
            this.setState({num});
+           this.props.reviceSum(1);
       };
 
           min=()=>{
             let num =  this.state.num-1;
            this.setState({num});
+           this.props.reviceSum(-1);
       };
 
 
